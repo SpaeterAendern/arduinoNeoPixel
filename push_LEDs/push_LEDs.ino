@@ -14,28 +14,36 @@ void setup()
 int rcolor = 0;
 int gcolor = 0;
 int bcolor = 0;
-
+int i;
+int j;
 void loop() {
-  for(int i=0;i<NUMPIXELS;i++)
+  for(i=0;i<NUMPIXELS;i++)
   {
     //define new random color
-    rcolor = random(1,254);
-    gcolor = random(1,254);
-    bcolor = random(1,254);
+    rcolor = 10*random(1,25); //random(1,254);
+    gcolor = 10*random(1,25); //random(1,254);
+    bcolor = 10*random(1,25); //random(1,254);
     
     // present first color
     pixels.setPixelColor(0, pixels.Color(rcolor,gcolor,bcolor));
     pixels.show();
-    delay(50);
+    delay(10);
 
     // move color to the end, NUMPIXELS-i: attach to existing colors
-    for(int j=1;j<NUMPIXELS-i;j++)
+    for(j=2;j<NUMPIXELS-i;j=j+2)
     {
-      pixels.setPixelColor(j-1, pixels.Color(0,0,0));
+      pixels.setPixelColor(j-2, pixels.Color(0,0,0));
       pixels.setPixelColor(j, pixels.Color(rcolor,gcolor,bcolor));
       pixels.show();
       delay(delayval);
-    }
+      if(j==(NUMPIXELS-i)-2)
+      {
+        pixels.setPixelColor(j, pixels.Color(0,0,0));
+        pixels.setPixelColor(j+1, pixels.Color(rcolor,gcolor,bcolor));
+              pixels.show();
+      delay(delayval);
+      }
+    } 
   }
   
   for(int i=0;i<NUMPIXELS;i++)

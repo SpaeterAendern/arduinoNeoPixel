@@ -32,6 +32,7 @@ void setup()
 void loop() 
 {
   newpos=random(0,NUMPIXELS-1);
+  
   if(newpos>1)
   {
     pixels.setPixelColor(newpos-2, pixels.Color(0,0,2*20));
@@ -42,8 +43,10 @@ void loop()
     pixels.setPixelColor(newpos-1, pixels.Color(0,0,5*20));
     array[newpos-1]=5;
   }
+  
   pixels.setPixelColor(newpos, pixels.Color(0,0,254));
   array[newpos]=9;
+  
   if(newpos<239)
   {
     pixels.setPixelColor(newpos+1, pixels.Color(0,0,5*20));

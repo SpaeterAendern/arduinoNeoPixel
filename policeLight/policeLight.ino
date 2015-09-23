@@ -7,9 +7,9 @@
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 int delayval = 5; // delay for half a second
 
-int rcolor = 0;
+int rcolor = 10;
 int gcolor = 0;
-int bcolor = 100;
+int bcolor = 0;
 int i;
 int j;
 int newpos;
@@ -17,6 +17,8 @@ int possible=0;
 int counter=0;
 int deleter=0;
 int array[240];
+int temp;
+
 
 void setup() 
 {
@@ -31,44 +33,18 @@ void setup()
 
 void loop() 
 {
-  newpos=random(0,NUMPIXELS-1);
-  
-  if(newpos>1)
-  {
-    pixels.setPixelColor(newpos-2, pixels.Color(rcolor,gcolor,2*20));
-    array[newpos-2]=2;
-  }
-  if(newpos>0)
-  {
-    pixels.setPixelColor(newpos-1, pixels.Color(rcolor,gcolor,5*20));
-    array[newpos-1]=5;
-  }
-  
-  pixels.setPixelColor(newpos, pixels.Color(rcolor,gcolor,254));
-  array[newpos]=9;
-  
-  if(newpos<239)
-  {
-    pixels.setPixelColor(newpos+1, pixels.Color(rcolor,gcolor,5*20));
-    array[newpos+1]=5;
-  }
-  if(newpos<238)
-  {
-    pixels.setPixelColor(newpos+2, pixels.Color(rcolor,gcolor,2*20));
-    array[newpos+2]=2;
-  }
-  pixels.show();
-  
   for(int i=0;i<NUMPIXELS;i++)
   {
-    if(array[i]>0)
-    {
-      array[i]--;
-      pixels.setPixelColor(i, pixels.Color(rcolor,0,array[i]*20));
-      pixels.show(); 
-    }
-    //delay(1); 
-  } 
+    pixels.setPixelColor(i, pixels.Color(rcolor,gcolor,bcolor));
+    //temp=rcolor;
+    //rcolor=bcolor;
+    //bcolor=temp;
+  }
+    temp=rcolor;
+    rcolor=bcolor;
+    bcolor=temp;
+  pixels.show(); 
+  delay(400);
 } 
 
 
